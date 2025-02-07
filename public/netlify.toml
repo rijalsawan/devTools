@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  functions = "functions"
+
+[context.production.environment]
+  API_KEY = "12345"
+  APP_ENV = "production"
+  DEBUG = "false"
