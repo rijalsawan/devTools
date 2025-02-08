@@ -3,7 +3,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { pageview } from "@/lib/gtag";
+import { pageview } from "/utility/gtag";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
