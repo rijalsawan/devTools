@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
+import Script from "next/script";
 
 export default function Home() {
     const [file, setFile] = useState(null);
@@ -50,6 +51,25 @@ export default function Home() {
                 <meta name="keywords" content=".env to netlifytoml, Free .env to netlifytoml online tool" />
                 <meta name="robots" content="index, follow" />
             </Head>
+            {/* Google Tag (gtag.js) */}
+            <Script
+                strategy="afterInteractive"
+                src="https://www.googletagmanager.com/gtag/js?id=G-52R3J5ZQW2"
+            />
+            <Script
+                id="google-analytics"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-52R3J5ZQW2', {
+                            page_path: window.location.pathname,
+                        });
+                    `,
+                }}
+            />
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col items-center justify-center p-6 md:p-8">
             <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
                 <h1 className="text-3xl font-bold text-gray-800 text-center mb-8 border-b pb-4">

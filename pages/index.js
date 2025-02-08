@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import Script from 'next/script';
 
 export default function Home() {
   const tools = [
@@ -31,6 +32,25 @@ export default function Home() {
                     })}
                 </script>
             </Head>
+            {/* Google Tag (gtag.js) */}
+            <Script
+                strategy="afterInteractive"
+                src="https://www.googletagmanager.com/gtag/js?id=G-52R3J5ZQW2"
+            />
+            <Script
+                id="google-analytics"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-52R3J5ZQW2', {
+                            page_path: window.location.pathname,
+                        });
+                    `,
+                }}
+            />
             <div className="flex flex-col mt-20 items-center justify-center">
                 <h1 className="text-2xl font-bold">Welcome to Free Online Tools</h1>
                 <p>Convert JSON, CSV, YAML, encode/decode URLs, and more!</p>
