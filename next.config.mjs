@@ -1,3 +1,10 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+export default nextConfig;
+
 export const trailingSlash = true;
 export async function redirects() {
   return [
@@ -8,3 +15,5 @@ export async function redirects() {
     },
   ];
 }
+
+
