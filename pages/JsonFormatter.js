@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 
 export default function Home() {
     const [jsonInput, setJsonInput] = useState("");
@@ -49,50 +50,69 @@ export default function Home() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-4">
-            <h1 className="text-2xl font-bold mb-4">JSON Formatter</h1>
+        <>
+        <Head>
+                <title>Json Formatter - Free & Instant</title>
+                <meta name="description" content="format Json instantly with our free online tool. Simple, fast, and user-friendly." />
+                <meta name="keywords" content="Json formatter online free, json formatter" />
+                <meta name="robots" content="index, follow" />
+            </Head>
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col items-center justify-center p-6 md:p-8">
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+                <h1 className="text-3xl font-bold text-gray-800 text-center mb-8 border-b pb-4">
+                    JSON Formatter
+                    <p className="text-sm text-gray-500 font-normal mt-2">Beautify & Format JSON</p>
+                </h1>
 
-            <textarea
-                placeholder="Enter JSON here..."
-                value={jsonInput}
-                onChange={(e) => setJsonInput(e.target.value)}
-                className="border p-2 rounded w-full max-w-lg h-40"
-            />
+                <div className="space-y-6">
+                    <textarea
+                        placeholder="Enter JSON here..."
+                        value={jsonInput}
+                        onChange={(e) => setJsonInput(e.target.value)}
+                        className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 transition-colors focus:outline-none focus:border-blue-500 h-40"
+                    />
 
-            <button
-                onClick={handleFormat}
-                className="px-4 py-2 bg-blue-500 text-white rounded mt-4 hover:bg-blue-600"
-            >
-                Format JSON
-            </button>
+                    <button
+                        onClick={handleFormat}
+                        className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    >
+                        Format JSON
+                    </button>
 
-            {error && <p className="text-red-500 mt-2">{error}</p>}
+                    {error && (
+                        <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
+                            <p className="text-red-700">{error}</p>
+                        </div>
+                    )}
 
-            {formattedJson && (
-                <div className="mt-4 p-4 border rounded w-full max-w-lg bg-gray-100">
-                    <h2 className="text-lg font-bold">Formatted JSON:</h2>
-                    <pre className="whitespace-pre-wrap break-words">{formattedJson}</pre>
+                    {formattedJson && (
+                        <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                            <h2 className="text-lg font-bold text-gray-800 mb-3">Formatted JSON:</h2>
+                            <pre className="whitespace-pre-wrap break-words bg-white p-4 rounded-lg border border-gray-200">{formattedJson}</pre>
 
-                    <div className="flex space-x-4 mt-4">
-                        <button
-                            onClick={handleCopy}
-                            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                        >
-                            📋 Copy to Clipboard
-                        </button>
+                            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                                <button
+                                    onClick={handleCopy}
+                                    className="flex-1 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                                >
+                                    📋 Copy to Clipboard
+                                </button>
 
-                        {downloadUrl && (
-                            <a
-                                href={downloadUrl}
-                                download="formatted.json"
-                                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                            >
-                                📥 Download JSON
-                            </a>
-                        )}
-                    </div>
+                                {downloadUrl && (
+                                    <a
+                                        href={downloadUrl}
+                                        download="formatted.json"
+                                        className="flex-1 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                                    >
+                                        📥 Download JSON
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
-            )}
+            </div>
         </div>
+        </>
     );
 }

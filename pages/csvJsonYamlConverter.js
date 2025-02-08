@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 
 export default function Home() {
     const [file, setFile] = useState(null);
@@ -51,6 +52,13 @@ export default function Home() {
   
 
     return (
+      <>
+      <Head>
+                <title>CSV to JSON Converter - Free & Instant</title>
+                <meta name="description" content="Convert CSV to JSON instantly with our free online converter. Simple, fast, and user-friendly." />
+                <meta name="keywords" content="CSV to JSON, CSV Converter, Free CSV to JSON online tool" />
+                <meta name="robots" content="index, follow" />
+            </Head>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col items-center justify-center p-6 md:p-8">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
         <h1 className="text-3xl font-bold text-gray-800 text-center mb-8 border-b pb-4">
@@ -120,5 +128,6 @@ export default function Home() {
         </div>
       </div>
       </div>
+      </>
     );
 }

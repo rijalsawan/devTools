@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Home() {
   const tools = [
@@ -14,32 +15,61 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-12">
-      <div className="container mx-auto"></div>
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800 animate-fade-in">
-          Developer Tools
-          <div className="h-1 w-24 bg-blue-500 mx-auto mt-4 rounded-full"></div>
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <>
+    <Head>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "Online Tools",
+                        "url": "https://dev-tools-mocha.vercel.app/",
+                        "description": "Convert CSV to JSON, format JSON, encode/decode Base64, and more!",
+                        "sameAs": [
+                            "https://twitter.com/rijalsawan",
+                            "https://github.com/rijalsawan"
+                        ]
+                    })}
+                </script>
+            </Head>
+            <div className="flex flex-col mt-20 items-center justify-center">
+                <h1 className="text-2xl font-bold">Welcome to Free Online Tools</h1>
+                <p>Convert JSON, CSV, YAML, encode/decode URLs, and more!</p>
+            </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-16">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map((tool) => (
-            <Link href={`/${tool.component}`} key={tool.component}>
-              <div className="group bg-white rounded-xl shadow-md hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 p-8 border border-gray-100">
-                <div className="flex flex-col items-center">
-                  <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                    {tool.icon}
+            <Link
+              href={`/${tool.component}`}
+              key={tool.component}
+              className="group transform transition-all duration-300 hover:scale-105"
+            >
+              <div className="relative p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl border border-slate-100/50 backdrop-blur-sm">
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-slate-100 rounded-xl group-hover:bg-slate-200 transition-colors">
+                    <span className="text-2xl">{tool.icon}</span>
                   </div>
-                  <h2 className="text-xl font-bold text-gray-800 text-center mb-3">
-                    {tool.name}
-                  </h2>
-                  <p className="text-gray-600 text-center text-sm">
-                    Click to use this tool
-                  </p>
+                  <div className="flex-1">
+                    <h2 className="text-lg font-medium text-slate-800 mb-1">
+                      {tool.name}
+                    </h2>
+                    {tool.description && (
+                      <p className="text-sm text-slate-500">
+                        {tool.description}
+                      </p>
+                    )}
+                  </div>
+                  <div className="text-slate-400 group-hover:text-slate-800 transition-colors"></div>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
-                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-xl"></div>
-              </div>
-            </Link>
+                </Link>
           ))}
         </div>
       </div>
+    </div>
+    </>
   );
 }
